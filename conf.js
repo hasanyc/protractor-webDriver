@@ -5,7 +5,7 @@ exports.config = {
     selenium: testConfig.seleniumAddress,
     specs: ['oneLogin.js'],
     capabilities: {
-        browserName: testConfig.browser[0].ch
+              'browserName': testConfig.browser[0].ch
     }
 
 
