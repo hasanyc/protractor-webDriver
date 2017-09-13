@@ -1,6 +1,6 @@
 {
   "seleniumAddress": "http://127.0.0.1:4444/wd/hub",
-  "baseURL": "https://innroad.onelogin.com/login",
+  "baseURL": "https://sample.onelogin.com/login",
   "browser": [
     {
       "ch": "chrome",
@@ -32,7 +32,7 @@
     {
       "oneLoginValues": [
         {
-          "userName": "hassan.bhuiyan@innroad.com",
+          "userName": "hassan.bhuiyan@sample.com",
           "passWord": "putYourOwnPassword"
 
         }
