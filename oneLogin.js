@@ -2,40 +2,35 @@
  * Created by hassan.bhuiyan on 11/18/2016.
  */
 
-var testConfig = require('./config.json');
+    describe('Login to oneLogin first', function() {
 
-describe('Login to oneLogin first', function() {
-    it('should successfully log you to onelogin site and take you do the Beringia', function() {
+        it('should successfully log you to onelogin site and take you do the Beringia', function() {
 
-       // oneLogin app not designed with angular.js so we have by pass it
         browser.ignoreSynchronization = true;
-        // maximize the browser
+        browser.get("https://www.innroad.com/pricing");
         browser.driver.manage().window().maximize();
-        // navigate to the site
-        browser.get(testConfig.baseURL);
-        // verify if we are in the correct page
-        expect(browser.getCurrentUrl()).toBe(testConfig.baseURL);
-        // Enter the email id to login to oneLogin app
-        element(by.id(testConfig.locators[0].oneLoginLocators[0].userName)).sendKeys(testConfig.values[0].oneLoginValues[0].userName);
-        // enter the password to login to oneLogin app
-        element(by.id(testConfig.locators[0].oneLoginLocators[0].passWord)).sendKeys(testConfig.values[0].oneLoginValues[0].passWord);
-        // click the Login button to login to oneLogin app
-        element(by.id(testConfig.locators[0].oneLoginLocators[0].loginButton)).click();
-        // wait few sec so that all webElement loads up
-        browser.manage().timeouts().implicitlyWait(15000);
-        // Click on innSupport (Development)
-        element(by.xpath(testConfig.locators[0].oneLoginLocators[0].innSupportAppLink)).click();
 
-        // Switch to the new tab Window
-        browser.getAllWindowHandles().then(function (handles) {
-            browser.switchTo().window(handles[1]);
 
-            // click on Beringia image to go innSupport APP
+        //expect(browser.getCurrentUrl()).toBe("https://www.innroad.com/pricing");
+        element(by.name("firstname")).sendKeys("qa");
+        element(by.name("lastname")).sendKeys("test");
 
-        element(by.xpath(testConfig.locators[0].toolsLocator[0].beringiaLink)).click();
+        // drop-down
+        element.all(by.css("#country-7dfde2c6-84cf-4e88-a8f6-15e5f5224ec3 option")).then (function (listOfCountries){
+                console.log ("Total values of countries are: " + listOfCountries.length)
+                expect(listOfCountries.length).toBe(5);
+                // for (var i =0; i<listOfCountries.length; i++){
+                //     listOfCountries[i].getText().then(function(countryName){
+                //         //console.log ("countries name are: " +  countryName);
+                //     });
+                // }
+                expect(listOfCountries[2].getText()).toBe('United States');
+                listOfCountries[2].click();
+                expect (listOfCountries[2].isSelected());
 
-        browser.pause();
+
+            });
+
+         });
 
     });
-})}
-);

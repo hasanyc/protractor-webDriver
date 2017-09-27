@@ -1,11 +1,14 @@
 
-var testConfig = require('./config.json');
-
 exports.config = {
-    selenium: testConfig.seleniumAddress,
+
+    directConnect: true,
     specs: ['oneLogin.js'],
     capabilities: {
-              'browserName': testConfig.browser[0].ch
+              browserName: 'chrome'
+    },
+    framework: 'jasmine2',
+    jasminNodeOpts:{
+        defaultTimeoutInterval: 30000
     }
 
 
